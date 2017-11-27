@@ -30,6 +30,8 @@ public class GameManager : MonoBehaviour
 	public GameObject scoreLabel;
 	public float shrinkage = 0.0051f;
 
+	public GameObject[] iGameObjects;
+
 	public static GameManager instance;
 
 	void Start()
@@ -54,8 +56,15 @@ public class GameManager : MonoBehaviour
 
 		gameOverCanvas.SetActive(false);
 
-		IGame game = controller as IGame;
-		game.StartGame();
+		IGame game;
+		for (int n = 0; n < iGameObjects.Length; n++)
+		{
+			foreach (Component comp in iGameObjects[n].GetComponents(typeof(IGame)))
+			{
+				game = comp as IGame;
+				game.StartGame();
+			}
+		}
 
 		// Set borders:
 		Vector3 lScale = ScreenScale.Scale(Camera.main, leftBorder);

@@ -2,14 +2,34 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Collector : MonoBehaviour
+public class Collector : MonoBehaviour, IGame
 {
 	public int color = 0;
 	Vector3 scaling = new Vector3(0.20f, 0.20f, 0.0f);
 
-	void Start()
+	public void StartGame()
 	{
 		scaling += new Vector3(GameManager.instance.shrinkage, GameManager.instance.shrinkage, 0.0f);
+	}
+
+	public void ResumeGame()
+	{
+
+	}
+
+	public void PauseGame()
+	{
+
+	}
+
+	public void StopGame()
+	{
+
+	}
+
+	public void ResetGame()
+	{
+
 	}
 
 	void OnTriggerEnter2D(Collider2D collider)
